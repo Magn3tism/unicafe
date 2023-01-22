@@ -44,22 +44,34 @@ const App = () => {
 
 const Statistics = ({ good, neutral, bad, all, avg }) => {
   return (
-    <>
-      <Feedback text="Good" value={good} />
-      <Feedback text="Neutral" value={neutral} />
-      <Feedback text="Bad" value={bad} />
-      <Feedback text="All" value={all} />
-      <Feedback text="Average" value={avg / all || 0} />
-      <Feedback text="Positive" value={(good / all) * 100 || 0} extra="%" />
-    </>
+    <table>
+      <tbody>
+        <Feedback text="Good" value={good} />
+        <Feedback text="Neutral" value={neutral} />
+        <Feedback text="Bad" value={bad} />
+        <Feedback text="All" value={all} />
+        <Feedback
+          text="Average"
+          value={Math.round((avg / all) * 100) / 100 || 0}
+        />
+        <Feedback
+          text="Positive"
+          value={Math.round((good / all) * 100) || 0}
+          extra="%"
+        />
+      </tbody>
+    </table>
   );
 };
 
 const Feedback = ({ text, value, extra = "" }) => {
   return (
-    <p>
-      {text}: {value} {extra}
-    </p>
+    <tr>
+      <td>{text}</td>
+      <td>
+        {value} {extra}
+      </td>
+    </tr>
   );
 };
 
