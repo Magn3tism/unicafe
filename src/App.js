@@ -37,13 +37,21 @@ const App = () => {
       />
 
       <h1>Statistics</h1>
+      <Statistics good={good} bad={bad} neutral={neutral} avg={avg} all={all} />
+    </div>
+  );
+};
+
+const Statistics = ({ good, neutral, bad, all, avg }) => {
+  return (
+    <>
       <Feedback text="Good" value={good} />
       <Feedback text="Neutral" value={neutral} />
       <Feedback text="Bad" value={bad} />
       <Feedback text="All" value={all} />
       <Feedback text="Average" value={avg / all || 0} />
       <Feedback text="Positive" value={(good / all) * 100 || 0} extra="%" />
-    </div>
+    </>
   );
 };
 
